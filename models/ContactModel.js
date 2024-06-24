@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const contactSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  email: { type: String, unique: true }, // Assuming emails should be unique
+  email: { type: String }, // Assuming emails should be unique
   phone: { type: String },
   mobile: { type: String },
   company: { type: String },
