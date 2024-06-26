@@ -3,6 +3,7 @@ import { User } from "../../models/UserModel.js";
 import { generateToken } from "../jwt/generate.js";
 
 export const loginUserController = async (data) => {
+  console.log("mmm");
   try {
     const { username, password } = data;
 

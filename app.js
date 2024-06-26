@@ -9,16 +9,21 @@ const app = express();
 app.use(express.json({ limit: "10mb" }));
 dotenv.config();
 
-connectToMongoDB();
-app.use("/user", userRouter);
-app.use("/contact", contactRouter);
-const port = 8080;
-
 app.use(
   cors({
     origin: "*",
   })
 );
+
+// Before your router middleware
+app.options("*", cors());
+
+connectToMongoDB();
+
+app.use("/user", userRouter);
+app.use("/contact", contactRouter);
+
+const port = 8080;
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}/`);
@@ -26,7 +31,7 @@ app.listen(port, () => {
 
 app.all("/*", (req, res) => {
   res.json({
-    msg: "service is up",
+    msg: "Service is up",
     method: req.method,
     head: req.header("Authorization"),
   });
