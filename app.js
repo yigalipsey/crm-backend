@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import userRouter from "./routes/userRoutes.js";
 import contactRouter from "./routes/contactRoutes.js";
+import conversationRouter from "./routes/conversationRoutes.js";
 import { connectToMongoDB } from "./configDB/connectToMongoDB.js";
 
 const app = express();
@@ -22,6 +23,7 @@ connectToMongoDB();
 
 app.use("/user", userRouter);
 app.use("/contact", contactRouter);
+app.use("/conversation", conversationRouter);
 
 const port = 8080;
 
