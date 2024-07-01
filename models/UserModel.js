@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true }, // Store hashed and salted passwords
   firstName: { type: String, required: false },
   lastName: { type: String, required: false },
-  email: { type: String, required: false, unique: true },
+  email: { type: String, required: false },
   envId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Env",

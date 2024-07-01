@@ -1,4 +1,9 @@
+import { createUserController } from "../../controllers/users/createUserController.js";
+import chalk from "chalk";
+
 export const CreateUserService = async (req, res) => {
+  console.log(chalk.blue(JSON.stringify(req.body, null, 2))); // 2 is for indentation
+
   try {
     // Check if the user is an admin
     if (req.user.role !== "admin") {

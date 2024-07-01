@@ -1,23 +1,26 @@
 import User from "../../models/UserModel.js";
 import { hashUserPassword } from "../../helpers/bcrypt.js";
+import chalk from "chalk";
 
 export const createUserController = async (userData) => {
+  console.log(chalk.red(userData, "kim"));
+  console.log("mnmn");
   try {
-    const { username, password, email, role, envId } = userData;
+    const { username, password, envId } = userData;
     // Input validation: Check if required fields are provided
     if (!username || !password || !envId) {
       return { err: true, msg: "Missing required fields" };
     }
 
     // Hash the password
-    const hashedPassword = hashUserPassword(data.password);
+    const hashedPassword = hashUserPassword(password);
 
     // Create a new user object
     const newUser = new User({
       username,
       envId,
-      email,
       password: hashedPassword,
+      email: userData.email || "",
     });
 
     // Save the user to the database
