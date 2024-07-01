@@ -20,6 +20,9 @@ export const RegisterService = async (req, res) => {
         msg: "user created, send to email link to active your user",
         code: 100,
       });
-  } else return res.status(401).json(response);
+  } else {
+    console.log("11");
+    return res.status(401).json(response.msg.message);
+  }
   return res.json(response);
 };

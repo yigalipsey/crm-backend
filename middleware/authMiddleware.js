@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import chalk from "chalk";
 dotenv.config();
 
 export const authMiddleware = (req, res, next) => {

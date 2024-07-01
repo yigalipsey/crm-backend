@@ -6,8 +6,8 @@ export const generateToken = (user) => {
   const payload = {
     userId: user._id, // Assuming your user object has an "_id" property
     email: user.email,
-    type: user.type,
-    // Add other user-related information to the payload if needed
+    role: user.role,
+    envId: user.envId,
   };
 
   // Set the expiration time to 60 minutes (60 seconds * 60 minutes)

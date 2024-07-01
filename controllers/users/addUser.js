@@ -1,6 +1,6 @@
 import { hashUserPassword } from "../../helpers/bcrypt.js";
 import { getIsraelDateTime } from "../../helpers/getdate.js";
-import { User } from "../../models/UserModel.js";
+import User from "../../models/UserModel.js";
 
 export const addUser = async (data) => {
   if (!data?.password || !data?.username)
@@ -14,7 +14,7 @@ export const addUser = async (data) => {
   try {
     // Check if a user with the provided email already exists
     const existingUser = await User.findOne({
-      email: data.email,
+      username: data.username,
     });
 
     if (existingUser) {
@@ -42,18 +42,6 @@ export const addUser = async (data) => {
             username: data.username,
             password: hashPassword,
             email: data.email,
-            // lastName: data.lastName,
-            // firstName: data.firstName,
-            // city: data.city,
-            // contactName: data?.contactName,
-            // contactEmail: data?.contactEmail,
-            // contactPhone: data?.contactPhone,
-            // contactCelphone: data?.contactCelphone,
-            // type: data.type,
-            // profileImg: data.profileImg,
-            // uDate: getIsraelDateTime(),
-            // active: false,
-            // cDate: getIsraelDateTime(),
           });
 
           // Save the new user to the database
@@ -74,18 +62,6 @@ export const addUser = async (data) => {
       username: data.username,
       password: hashPassword,
       email: data.email,
-      //   lastName: data.lastName,
-      //   firstName: data.firstName,
-      //   city: data.city,
-      //   contactName: data?.contactName,
-      //   contactEmail: data?.contactEmail,
-      //   contactPhone: data?.contactPhone,
-      //   contactCelphone: data?.contactCelphone,
-      //   type: data.type,
-      //   profileImg: data.profileImg,
-      //   uDate: getIsraelDateTime(),
-      //   active: false,
-      //   cDate: getIsraelDateTime(),
     });
 
     // Save the new user to the database

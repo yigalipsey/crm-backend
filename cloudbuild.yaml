@@ -1,0 +1,15 @@
+steps:
+  - name: "node:16" # Use a Node.js 16 image for build
+    entrypoint: "npm"
+    args: ["ci"] # Run npm ci to install dependencies
+
+  - name: "node:16" # Use the same Node.js image for deployment
+    entrypoint: "npm"
+    args: ["run", "start"] # Run your application start command
+
+images: ["gcr.io/crm-app-428010/crm"] # Replace with your desired image name
+
+# Optional: Set environment variables during deployment
+# env:
+#   <VAR_NAME>: <VAR_VALUE>
+
