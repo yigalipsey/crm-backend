@@ -5,6 +5,7 @@ import userRouter from "./routes/userRoutes.js";
 import contactRouter from "./routes/contactRoutes.js";
 import conversationRouter from "./routes/conversationRoutes.js";
 import envRouter from "./routes/envRoutes.js";
+import { ensureMasterAdminExists } from "./middleware/ensureMasterAdminExists.js";
 import { connectToMongoDB } from "./configDB/connectToMongoDB.js";
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(
 app.options("*", cors());
 
 connectToMongoDB();
+ensureMasterAdminExists();
 
 app.use("/user", userRouter);
 app.use("/contact", contactRouter);

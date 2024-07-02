@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }, // Store hashed and salted passwords
+  username: { type: String, required: true },
+  password: { type: String, required: true },
   firstName: { type: String, required: false },
   lastName: { type: String, required: false },
   email: { type: String, required: false },
@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     ref: "Env",
     required: false,
   },
-  role: { type: String, enum: ["admin", "user"], default: "user" },
+  role: { type: String, enum: ["admin", "user", "master"], default: "user" },
   isActive: { type: Boolean, default: true },
   createdDate: { type: Date, default: Date.now },
   modifiedDate: { type: Date, default: Date.now },

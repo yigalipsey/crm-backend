@@ -2,11 +2,9 @@ import { createUserController } from "../../controllers/users/createUserControll
 import chalk from "chalk";
 
 export const CreateUserService = async (req, res) => {
-  console.log(chalk.blue(JSON.stringify(req.body, null, 2))); // 2 is for indentation
-
   try {
     // Check if the user is an admin
-    if (req.user.role !== "admin") {
+    if (req.user.role === "user") {
       return res
         .status(403)
         .json({ err: true, msg: "Unauthorized: Only admins can create users" });

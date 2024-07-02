@@ -3,13 +3,19 @@ import { hashUserPassword } from "../../helpers/bcrypt.js";
 import chalk from "chalk";
 
 export const createUserController = async (userData) => {
-  console.log(chalk.red(userData, "kim"));
-  console.log("mnmn");
+  console.log(userData);
   try {
     const { username, password, envId } = userData;
+
     // Input validation: Check if required fields are provided
     if (!username || !password || !envId) {
       return { err: true, msg: "Missing required fields" };
+    }
+
+    // Check for existing user with the same username in the same environment
+    const existingUser = await User.findOne({ username, envId });
+    if (existingUser) {
+      return { err: true, msg: "Username already exists in this environment" };
     }
 
     // Hash the password
@@ -20,7 +26,8 @@ export const createUserController = async (userData) => {
       username,
       envId,
       password: hashedPassword,
-      email: userData.email || "",
+      email: userData.email || null,
+      role: userData.role || "user",
     });
 
     // Save the user to the database
@@ -28,11 +35,6 @@ export const createUserController = async (userData) => {
     return { success: true, msg: "User created successfully", user: savedUser };
   } catch (error) {
     console.error("Error creating user:", error);
-    if (error.code === 11000) {
-      // Duplicate key error
-      return { err: true, msg: "Username already exists in this environment" };
-    } else {
-      return { err: true, msg: error.message };
-    }
+    return { err: true, msg: error.message };
   }
 };
