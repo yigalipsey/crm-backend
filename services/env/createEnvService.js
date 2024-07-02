@@ -26,15 +26,8 @@ export const createEnvService = async (req, res) => {
     const newEnv = await createEnvController({ envCode, envDescription });
 
     if (newEnv.err) {
-      return res.status(400).json(newEnv); // Return error if environment creation failed
+      return res.status(400).json(newEnv);
     }
-
-    console.log(
-      chalk.green(
-        "Environment created:",
-        JSON.stringify(newEnv.env._id, null, 2)
-      )
-    );
 
     // Create the admin user
     const username = "admin";

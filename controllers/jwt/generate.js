@@ -4,7 +4,7 @@ dotenv.config();
 
 export const generateToken = (user) => {
   const payload = {
-    userId: user._id, // Assuming your user object has an "_id" property
+    userId: user._id,
     email: user.email,
     role: user.role,
     envId: user.envId,
