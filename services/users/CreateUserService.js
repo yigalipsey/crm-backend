@@ -1,5 +1,5 @@
-import { createUserController } from "../../controllers/users/createUserController.js";
 import chalk from "chalk";
+import { createUserController } from "../../controllers/users/createUserController.js";
 
 export const CreateUserService = async (req, res) => {
   try {
@@ -11,10 +11,14 @@ export const CreateUserService = async (req, res) => {
     }
 
     // Extract user data from the request body
-    const userData = req.body;
+    const { username, password } = req.body;
+
+    console.log(chalk.red(JSON.stringify(req.user, null, 2)));
+
+    const envId = req.user.envId;
 
     // Call the controller to create the user
-    const result = await createUserController(userData);
+    const result = await createUserController({ username, password, envId });
 
     // Handle the controller's response
     if (result.err) {

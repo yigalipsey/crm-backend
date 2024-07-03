@@ -2,15 +2,16 @@ import { compareUserPassword } from "../../helpers/bcrypt.js";
 import User from "../../models/UserModel.js";
 import { generateToken } from "../jwt/generate.js";
 
-export const loginUserController = async (data) => {
+export const loginUserController = async (loginData) => {
   try {
-    const { username, password } = data;
+    const { username, password, envId } = loginData;
 
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username, envId });
 
     if (!user) {
-      return { err: true, msg: "User not found" };
+      return { err: true, msg: "User not found in this environment" };
     }
+
     // check if the user is locked
     else if (user?.locked)
       return {
@@ -19,10 +20,9 @@ export const loginUserController = async (data) => {
         msg: "User is locked",
       };
     else {
-      // Check the password (replace this with your actual password validation logic)
-
-      const comparPassword = compareUserPassword(password, user.password);
-      if (!comparPassword) {
+      // Check the password
+      const comparePassword = compareUserPassword(password, user.password);
+      if (!comparePassword) {
         return {
           err: true,
           msg: "Invalid password",

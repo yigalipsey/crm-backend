@@ -16,6 +16,7 @@ export const addContact = async (contactData) => {
       email: contactData.email,
       userId: contactData.userId,
       mobile: contactData.mobile,
+      envId: contactData.envId,
     });
 
     const savedContact = await newContact.save();

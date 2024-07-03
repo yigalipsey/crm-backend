@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   envId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Env",
-    required: false,
+    required: true,
   },
   role: { type: String, enum: ["admin", "user", "master"], default: "user" },
   isActive: { type: Boolean, default: true },

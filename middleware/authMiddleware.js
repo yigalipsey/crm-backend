@@ -19,6 +19,8 @@ export const authMiddleware = (req, res, next) => {
         .json({ error: "Unauthorized: Invalid token", code: 401 });
     }
 
+    console.log(user);
+
     // Add the decoded user information to the request object
     req.user = user;
 

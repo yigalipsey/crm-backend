@@ -5,8 +5,7 @@ import { deleteEnvController } from "../../controllers/env/deleteEnvController.j
 
 export const createEnvService = async (req, res) => {
   try {
-    // Check if the user is a master admin (no associated envId)
-    if (req.user.envId !== null) {
+    if (req.user.role !== "master") {
       return res.status(403).json({
         err: true,
         msg: "Unauthorized: Only master admins can create environments",

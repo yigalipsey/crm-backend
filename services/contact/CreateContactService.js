@@ -3,7 +3,11 @@ import { addContact } from "../../controllers/contact/addContact.js";
 export const CreateContactService = async (req, res) => {
   // console.log(req.user);
   try {
-    const contactData = { ...req.body, userId: req.user.userId };
+    const contactData = {
+      ...req.body,
+      userId: req.user.userId,
+      envId: req.user.envId,
+    };
 
     // Call the controller function
     const response = await addContact(contactData);

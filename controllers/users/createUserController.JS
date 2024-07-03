@@ -3,7 +3,6 @@ import { hashUserPassword } from "../../helpers/bcrypt.js";
 import chalk from "chalk";
 
 export const createUserController = async (userData) => {
-  console.log(userData);
   try {
     const { username, password, envId } = userData;
 
