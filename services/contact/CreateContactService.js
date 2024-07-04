@@ -1,23 +1,24 @@
-import { addContact } from "../../controllers/contact/addContact.js";
+import { createContactController } from "../../controllers/contact/createContactController.js";
 
 export const CreateContactService = async (req, res) => {
-  // console.log(req.user);
   try {
     const contactData = {
       ...req.body,
       userId: req.user.userId,
-      envId: req.user.envId,
+      newEnvId: req.user.envId,
     };
 
-    // Call the controller function
-    const response = await addContact(contactData);
-    if (!response?.err) {
-      res.status(201).json({
+    const response = await createContactController(contactData);
+
+    if (response.err) {
+      return res.status(400).json(response);
+    } else {
+      return res.status(201).json({
         success: true,
         message: "Contact created successfully",
-        data: response,
+        contactId: response._id,
       });
-    } else return res.status(401).json(response);
+    }
   } catch (error) {
     console.error("Error in createContactService:", error);
     return res.status(500).json({
