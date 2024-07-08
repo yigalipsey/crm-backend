@@ -2,13 +2,13 @@ import Contact from "../../models/ContactModel.js";
 import chalk from "chalk";
 
 export const createContactController = async (contactData) => {
-  const { firstName, phone, email, newEnvId, userId } = contactData;
-  if (!firstName || (!phone && !email)) {
+  const { contactName, phone, email, newEnvId, userId } = contactData;
+  if (!contactName || (!phone && !email)) {
     // Check if either contactName, phone, or email is provided
     return {
       code: 106,
       err: true,
-      msg: "The parameters firstName, phone, or email must be entered",
+      msg: "The parameters contactName, phone, or email must be entered",
     };
   }
 
@@ -31,7 +31,7 @@ export const createContactController = async (contactData) => {
 
     // If no contact exists, create a new one
     const newContact = new Contact({
-      firstName,
+      firstName: contactName,
       phone,
       email: email || "",
       mobile: contactData.mobile || "",

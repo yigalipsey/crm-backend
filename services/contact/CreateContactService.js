@@ -1,6 +1,7 @@
 import { createContactController } from "../../controllers/contact/createContactController.js";
 
 export const CreateContactService = async (req, res) => {
+  console.log("req.body", req.body);
   try {
     const contactData = {
       ...req.body,
@@ -11,6 +12,7 @@ export const CreateContactService = async (req, res) => {
     const response = await createContactController(contactData);
 
     if (response.err) {
+      console.error("Error creating contact:", response.err);
       return res.status(400).json(response);
     } else {
       return res.status(201).json({

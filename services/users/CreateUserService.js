@@ -22,6 +22,7 @@ export const CreateUserService = async (req, res) => {
 
     // Handle the controller's response
     if (result.err) {
+      console.log(chalk.bgRedBright("err", result));
       return res.status(400).json(result); // Send error response
     } else {
       return res.status(201).json(result); // Send success response

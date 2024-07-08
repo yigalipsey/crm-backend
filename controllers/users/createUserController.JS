@@ -1,7 +1,9 @@
 import User from "../../models/UserModel.js";
 import { hashUserPassword } from "../../helpers/bcrypt.js";
+import chalk from "chalk";
 
 export const createUserController = async (userData) => {
+  console.log("1444");
   try {
     const { username, password, envId } = userData;
 
@@ -15,7 +17,6 @@ export const createUserController = async (userData) => {
     if (existingUser) {
       return { err: true, msg: "Username already exists in this environment" };
     }
-
     // Hash the password
     const hashedPassword = hashUserPassword(password);
 
