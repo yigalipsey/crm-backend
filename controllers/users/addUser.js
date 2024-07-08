@@ -3,6 +3,7 @@ import { getIsraelDateTime } from "../../helpers/getdate.js";
 import User from "../../models/UserModel.js";
 
 export const addUser = async (data) => {
+  console.log("kara");
   if (!data?.password || !data?.username)
     return {
       code: 106,

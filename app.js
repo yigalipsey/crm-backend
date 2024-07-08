@@ -29,7 +29,7 @@ app.use("/contact", contactRouter);
 app.use("/conversation", conversationRouter);
 app.use("/env", envRouter);
 
-const port = 8080;
+const port = 8080 || process.env.PORT;
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}/`);
