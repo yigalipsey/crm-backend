@@ -1,11 +1,12 @@
 import { deleteContactController } from "../../controllers/contact/deleteContactController.js";
 
 export const DeleteContactService = async (req, res) => {
+  console.log("jnjnjn");
   try {
     // Extract the necessary information from the request
     const contactId = req.params.id;
     const userId = req.user.userId;
-
+    console.log(contactId, userId);
     // Call the controller to delete the contact
     const deletedContact = await deleteContactController(contactId, userId);
 

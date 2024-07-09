@@ -26,6 +26,7 @@ const contactSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Environment",
     required: true,
+    index: true,
   },
   createdDate: { type: Date, default: Date.now },
   modifiedDate: { type: Date, default: Date.now },

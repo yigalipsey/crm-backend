@@ -3,6 +3,7 @@ import { CreateContactService } from "../services/contact/CreateContactService.j
 import { SearchContactService } from "../services/contact/SearchContactService.js";
 import { UpdateContactService } from "../services/contact/UpdateContactService.js";
 import { DeleteContactService } from "../services/contact/DeleteContactService.js";
+import { FetchContactsService } from "../services/contact/FetchContactsService.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
@@ -11,6 +12,8 @@ const router = express.Router();
 router.post("/createcontact", authMiddleware, CreateContactService);
 
 router.get("/searchcontact", authMiddleware, SearchContactService);
+
+router.get("/fetchcontacts", authMiddleware, FetchContactsService);
 
 router.patch("/updatecontact/:id", authMiddleware, UpdateContactService);
 

@@ -5,9 +5,11 @@ export const UpdateContactService = async (req, res) => {
   try {
     // Extract the necessary information from the request
     const contactId = req.params.id; // Assuming the ID is passed as a URL parameter
-    console.log(chalk.yellow(contactId));
-    const updatedContactData = req.body; // Updated contact data from the request body
 
+    const updatedContactData = req.body; // Updated contact data from the request body
+    console.log(chalk.yellow("------Update--------"));
+    console.log(updatedContactData);
+    console.log(chalk.yellow("------"));
     // Check if any fields are provided for update
     if (Object.keys(updatedContactData).length === 0) {
       return res.status(400).json({ msg: "You must send fields to update" });
